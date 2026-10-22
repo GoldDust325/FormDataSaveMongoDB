@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #287a52;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #287a52;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f7f3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>PlatePal Customer Directory</h1>
+    <p>Displaying the first <%= customers.length %> customers.</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Email Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% customers.forEach((customer, index) => { %>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.email %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

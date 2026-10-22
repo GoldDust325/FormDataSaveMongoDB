@@ -84,3 +84,30 @@ async function saveCustomerToMongoDB(name, email) {
     await client.close();
     }
 }
+
+// LAB 10.1: Retrieve the first 10 PlatePal customers
+module.exports.getPlatePalCustomers = async function(req, res, next) {
+    const platePalClient = new MongoClient(uri);
+
+    try {
+        await platePalClient.connect();
+
+        const db = platePalClient.db('platepal');
+        const customers = await db.collection('customers')
+            .find({})
+            .sort({ _id: 1 })
+            .limit(10)
+            .toArray();
+
+        res.render('customers', {
+            title: 'PlatePal Customers',
+            customers: customers
+        });
+
+    } catch (error) {
+        console.error('Error retrieving PlatePal customers:', error);
+        res.status(500).send('Unable to retrieve customers.');
+    } finally {
+        await platePalClient.close();
+    }
+};

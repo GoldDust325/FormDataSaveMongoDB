@@ -20,5 +20,6 @@ router.get('/', function(req, res, next) {
 
 var controllerDatabase = require('../controllers/database');   //this will load the controller file below
 router.post("/saveNewCustomer", controllerDatabase.saveNewCustomer); //see controllers/database.js file
-
+// LAB 10.1: Display the first 10 PlatePal customers
+router.get('/customers', controllerDatabase.getPlatePalCustomers);
 module.exports = router;
